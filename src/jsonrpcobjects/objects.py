@@ -1,8 +1,6 @@
-from typing import Union, Optional
+from typing import Union, Optional, Any
 
 from pydantic import BaseModel
-
-from jsonrpcobjects.jsontypes import JSON, JSONStructured
 
 RequestType = Union['RequestObjectParams', 'RequestObject']
 NotificationType = Union['NotificationObject', 'NotificationObjectParams']
@@ -13,7 +11,7 @@ ErrorType = Union['ErrorObjectData', 'ErrorObject']
 class RequestObjectParams(BaseModel):
     id: Union[str, int]
     method: str
-    params: JSONStructured
+    params: Union[list, dict]
     jsonrpc: str = '2.0'
 
 
@@ -30,14 +28,14 @@ class NotificationObject(BaseModel):
 
 class NotificationObjectParams(BaseModel):
     method: str
-    params: JSONStructured
+    params: Union[list, dict]
     jsonrpc: str = '2.0'
 
 
 class ErrorObjectData(BaseModel):
     code: int
     message: str
-    data: JSON
+    data: Any
 
 
 class ErrorObject(BaseModel):
@@ -53,5 +51,5 @@ class ErrorResponseObject(BaseModel):
 
 class ResultResponseObject(BaseModel):
     id: Union[str, int]
-    result: JSON
+    result: Any
     jsonrpc: str = '2.0'
