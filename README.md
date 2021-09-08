@@ -22,6 +22,8 @@ Each error extends `JSONRPCError`.
 
 Example use with client:
 ```python
+from jsonrpcobjects.errors import MethodNotFound, JSONRPCError 
+
 try:
     client.example_method(params)
 except MethodNotFound:
