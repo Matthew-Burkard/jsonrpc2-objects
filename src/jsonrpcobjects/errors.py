@@ -34,28 +34,28 @@ class JSONRPCError(Exception):
 
 
 class ParseError(JSONRPCError):
-    def __init__(self) -> None:
-        super(ParseError, self).__init__(PARSE_ERROR)
+    def __init__(self, error: Optional[ErrorType] = None) -> None:
+        super(ParseError, self).__init__(error or PARSE_ERROR)
 
 
 class InvalidRequest(JSONRPCError):
-    def __init__(self) -> None:
-        super(InvalidRequest, self).__init__(INVALID_REQUEST)
+    def __init__(self, error: Optional[ErrorType] = None) -> None:
+        super(InvalidRequest, self).__init__(error or INVALID_REQUEST)
 
 
 class MethodNotFound(JSONRPCError):
-    def __init__(self) -> None:
-        super(MethodNotFound, self).__init__(METHOD_NOT_FOUND)
+    def __init__(self, error: Optional[ErrorType] = None) -> None:
+        super(MethodNotFound, self).__init__(error or METHOD_NOT_FOUND)
 
 
 class InvalidParams(JSONRPCError):
-    def __init__(self) -> None:
-        super(InvalidParams, self).__init__(INVALID_PARAMS)
+    def __init__(self, error: Optional[ErrorType] = None) -> None:
+        super(InvalidParams, self).__init__(error or INVALID_PARAMS)
 
 
 class InternalError(JSONRPCError):
-    def __init__(self) -> None:
-        super(InternalError, self).__init__(INTERNAL_ERROR)
+    def __init__(self, error: Optional[ErrorType] = None) -> None:
+        super(InternalError, self).__init__(error or INTERNAL_ERROR)
 
 
 class ServerError(JSONRPCError):
