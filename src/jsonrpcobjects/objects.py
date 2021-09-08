@@ -4,12 +4,8 @@ from pydantic import BaseModel
 
 from jsonrpcobjects.jsontypes import JSON, JSONStructured
 
-RequestType = Union[
-    'RequestObjectParams',
-    'RequestObject',
-    'NotificationObject',
-    'NotificationObjectParams',
-]
+RequestType = Union['RequestObjectParams', 'RequestObject']
+NotificationType = Union['NotificationObject', 'NotificationObjectParams']
 ResponseType = Union['ErrorResponseObject', 'ResultResponseObject']
 ErrorType = Union['ErrorObjectData', 'ErrorObject']
 
