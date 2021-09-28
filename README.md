@@ -1,3 +1,5 @@
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 # JSON-RPC 2.0 Objects
 
 A collection of objects for use in JSON-RPC 2.0 implementations.
@@ -27,8 +29,9 @@ Python exceptions are available for each JSON-RPC 2.0 error.
 Each error extends `JSONRPCError`.
 
 Example use with client:
+
 ```python
-from jsonrpcobjects.errors import MethodNotFound, JSONRPCError 
+from jsonrpcobjects.errors import JSONRPCError, MethodNotFound
 
 try:
     client.example_method(params)

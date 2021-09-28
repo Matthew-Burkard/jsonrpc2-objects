@@ -1,35 +1,35 @@
-from typing import Type, Optional
+from typing import Optional, Type
 
-from jsonrpcobjects.objects import ErrorObjectData, ErrorObject, ErrorType
+from jsonrpcobjects.objects import ErrorObject, ErrorObjectData, ErrorType
 
 __all__ = (
-    'PARSE_ERROR',
-    'INVALID_REQUEST',
-    'METHOD_NOT_FOUND',
-    'INVALID_PARAMS',
-    'INTERNAL_ERROR',
-    'JSONRPCError',
-    'ParseError',
-    'InvalidRequest',
-    'MethodNotFound',
-    'InvalidParams',
-    'InternalError',
-    'ServerError',
-    'get_exception_by_code',
+    "INTERNAL_ERROR",
+    "INVALID_PARAMS",
+    "INVALID_REQUEST",
+    "InternalError",
+    "InvalidParams",
+    "InvalidRequest",
+    "JSONRPCError",
+    "METHOD_NOT_FOUND",
+    "MethodNotFound",
+    "PARSE_ERROR",
+    "ParseError",
+    "ServerError",
+    "get_exception_by_code",
 )
 
-PARSE_ERROR = ErrorObject(code=-32700, message='Parse error')
-INVALID_REQUEST = ErrorObject(code=-32600, message='Invalid Request')
-METHOD_NOT_FOUND = ErrorObject(code=-32601, message='Method not found')
-INVALID_PARAMS = ErrorObject(code=-32602, message='Invalid params')
-INTERNAL_ERROR = ErrorObject(code=-32603, message='Internal error')
+INVALID_REQUEST = ErrorObject(code=-32600, message="Invalid Request")
+METHOD_NOT_FOUND = ErrorObject(code=-32601, message="Method not found")
+INVALID_PARAMS = ErrorObject(code=-32602, message="Invalid params")
+INTERNAL_ERROR = ErrorObject(code=-32603, message="Internal error")
+PARSE_ERROR = ErrorObject(code=-32700, message="Parse error")
 
 
 class JSONRPCError(Exception):
     def __init__(self, error: ErrorType) -> None:
-        msg = f'{error.code}: {error.message}'
+        msg = f"{error.code}: {error.message}"
         if isinstance(error, ErrorObjectData):
-            msg += f'\nError Data: {error.data}'
+            msg += f"\nError Data: {error.data}"
         super(JSONRPCError, self).__init__(error)
 
 
@@ -65,9 +65,9 @@ class ServerError(JSONRPCError):
 
 def get_exception_by_code(code: int) -> Optional[Type]:
     return {
-        -32700: ParseError,
         -32600: InvalidRequest,
         -32601: MethodNotFound,
         -32602: InvalidParams,
         -32603: InternalError,
+        -32700: ParseError,
     }.get(code)

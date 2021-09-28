@@ -1,7 +1,7 @@
-from typing import Union, Optional
+from typing import Optional, Union
 
-JSONPrimitive = Optional[Union[str, int, float, bool]]
-JSONArray = list['JSON']
-JSONObject = dict[str, 'JSON']
-JSONStructured = Union[JSONObject, JSONArray]
+JSONPrimitive = Optional[Union[bool, int, float, str]]
+JSONArray = list["JSON"]
+JSONObject = dict[str, "JSON"]
+JSONStructured = Union[JSONArray, JSONObject]
 JSON = Union[JSONPrimitive, JSONStructured]
