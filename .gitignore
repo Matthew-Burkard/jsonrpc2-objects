@@ -1,5 +1,8 @@
-/dist/
-/venv/
-/.idea/
 *.egg-info
 *__pycache__*
+*db.sqlite3*
+/.idea/
+/build/
+/dist/
+/log/
+/venv/
