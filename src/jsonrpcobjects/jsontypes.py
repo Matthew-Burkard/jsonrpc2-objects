@@ -1,3 +1,7 @@
+"""Python type variables to describe JSON types.
+
+Pydantic doesn't understand them.
+ """
 from typing import Optional, Union
 
 JSONPrimitive = Optional[Union[bool, int, float, str]]
