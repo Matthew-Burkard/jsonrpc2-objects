@@ -1,7 +1,7 @@
 """This module provides exceptions for each JSON-RPC 2.0 error.
 
 There is one Exception defined for each pre-defined JSON-RPC 2.0 error.
-Additionally there is a ServerError for implementation-defined errors.
+Additionally, there is a ServerError for implementation-defined errors.
 
 Each exception extends a base exception JSONRPCError.
 """
