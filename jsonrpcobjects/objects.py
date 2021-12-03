@@ -1,9 +1,7 @@
 """JSON-RPC 2.0 spec objects."""
-import typing
-from abc import ABC
 from typing import Any, Optional, Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, StrictInt, StrictStr
 
 __all__ = (
     "ErrorType",
@@ -26,39 +24,24 @@ RequestType = Union["RequestObjectParams", "RequestObject"]
 ResponseType = Union["ErrorResponseObject", "ResultResponseObject"]
 
 
-class SafeModel(ABC):
-    """A BaseModel may extend this to avoid union type coercion.
-
-    Pydantic recklessly coerces union types, this is a hacky fix.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        super(SafeModel, self).__init__(*args, **kwargs)
-        # To get this far, validation already passed.
-        for k, v in kwargs.items():
-            origin = typing.get_origin(self.__annotations__.get(k))
-            if origin == Union and type(self.__dict__.get(k)) != type(v):
-                self.__dict__[k] = v
-
-
-class RequestObjectParams(SafeModel, BaseModel):
+class RequestObjectParams(BaseModel):
     """JSON-RPC 2.0 request object with parameters."""
 
-    id: Union[int, str]
+    id: Union[StrictInt, StrictStr]
     method: str
     params: Union[list, dict]
     jsonrpc: str = "2.0"
 
 
-class RequestObject(SafeModel, BaseModel):
+class RequestObject(BaseModel):
     """JSON-RPC 2.0 request object."""
 
-    id: Union[int, str]
+    id: Union[StrictInt, StrictStr]
     method: str
     jsonrpc: str = "2.0"
 
 
-class NotificationObjectParams(SafeModel, BaseModel):
+class NotificationObjectParams(BaseModel):
     """JSON-RPC 2.0 notification object with parameters."""
 
     method: str
@@ -66,14 +49,14 @@ class NotificationObjectParams(SafeModel, BaseModel):
     jsonrpc: str = "2.0"
 
 
-class NotificationObject(SafeModel, BaseModel):
+class NotificationObject(BaseModel):
     """JSON-RPC 2.0 notification object."""
 
     method: str
     jsonrpc: str = "2.0"
 
 
-class ErrorObjectData(SafeModel, BaseModel):
+class ErrorObjectData(BaseModel):
     """JSON-RPC 2.0 error object with data."""
 
     code: int
@@ -81,24 +64,24 @@ class ErrorObjectData(SafeModel, BaseModel):
     data: Any
 
 
-class ErrorObject(SafeModel, BaseModel):
+class ErrorObject(BaseModel):
     """JSON-RPC 2.0 error object."""
 
     code: int
     message: str
 
 
-class ErrorResponseObject(SafeModel, BaseModel):
+class ErrorResponseObject(BaseModel):
     """JSON-RPC 2.0 error response object."""
 
-    id: Optional[Union[int, str]]
+    id: Optional[Union[StrictInt, StrictStr]]
     error: ErrorType
     jsonrpc: str = "2.0"
 
 
-class ResultResponseObject(SafeModel, BaseModel):
+class ResultResponseObject(BaseModel):
     """JSON-RPC 2.0 result response object."""
 
-    id: Union[int, str]
+    id: Union[StrictInt, StrictStr]
     result: Any
     jsonrpc: str = "2.0"
