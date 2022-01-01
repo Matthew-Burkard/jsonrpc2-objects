@@ -36,6 +36,7 @@ class JSONRPCError(Exception):
     """Base error that all JSON RPC exceptions extend."""
     def __init__(self, error: ErrorType) -> None:
         msg = f"{error.code}: {error.message}"
+        self.rpc_error = error
         if isinstance(error, ErrorObjectData):
             msg += f"\nError Data: {error.data}"
         super(JSONRPCError, self).__init__(error)
