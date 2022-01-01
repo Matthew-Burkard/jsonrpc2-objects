@@ -28,7 +28,7 @@ Available in `objects` are the following:
 Python exceptions are available for each JSON-RPC 2.0 error.
 Each error extends `JSONRPCError`.
 
-Example use with client:
+Example use with a client implementing these errors:
 
 ```python
 from jsonrpcobjects.errors import JSONRPCError, MethodNotFound
@@ -36,9 +36,9 @@ from jsonrpcobjects.errors import JSONRPCError, MethodNotFound
 try:
     client.example_method(params)
 except MethodNotFound:
-    print('Handle method not found')
+    print("Handle method not found")
 except JSONRPCError:
-    print('Handle any JSON RPC error.')
+    print("Handle any JSON RPC error.")
 ```
 
 ## JSON Types
