@@ -11,6 +11,10 @@ A collection of objects for use in JSON-RPC 2.0 implementations.
 pip install jsonrpc2-objects
 ```
 
+```shell
+poetry add jsonrpc2-objects
+```
+
 ## Objects
 
 Available in `objects` are the following:
