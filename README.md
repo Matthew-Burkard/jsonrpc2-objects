@@ -1,6 +1,7 @@
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
 # JSON-RPC 2.0 Objects
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![CodeFactor](https://www.codefactor.io/repository/github/matthew-burkard/jsonrpc2-objects/badge)](https://www.codefactor.io/repository/github/matthew-burkard/jsonrpc2-objects)
 
 A collection of objects for use in JSON-RPC 2.0 implementations.
 
@@ -12,7 +13,7 @@ pip install jsonrpc2-objects
 
 ## Objects
 
-Available in `objects` are the following: 
+Available in `objects` are the following:
 
 | Object                   | Description                 |
 |--------------------------|-----------------------------|
@@ -25,8 +26,8 @@ Available in `objects` are the following:
 
 ## Errors
 
-Python exceptions are available for each JSON-RPC 2.0 error.
-Each error extends `JSONRPCError`.
+Python exceptions are available for each JSON-RPC 2.0 error. Each error
+extends `JSONRPCError`.
 
 Example use with a client implementing these errors:
 
@@ -40,12 +41,3 @@ except MethodNotFound:
 except JSONRPCError:
     print("Handle any JSON RPC error.")
 ```
-
-## JSON Types
-
-Type hints are provided for the following JSON types.
-- JSONPrimitive
-- JSONArray
-- JSONObject
-- JSONStructured
-- JSON
