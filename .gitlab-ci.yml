@@ -1,0 +1,33 @@
+image: "python:latest"
+
+variables:
+  # Change pip's cache directory to be inside the project directory
+  # since we can only cache local items.
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PROJECT_SRC_DIR: "$CI_PROJECT_DIR/openrpc/"
+
+.setup_environment: &setup_env
+  before_script:
+    - python --version
+    - pip install poetry
+    - poetry --version
+    - poetry config virtualenvs.in-project true
+    - poetry install -vv
+    - source ./.venv/bin/activate
+
+cache:
+  paths:
+    - .cache/pip
+    - .venv/
+
+stages:
+  - publish
+
+deploy:
+  stage: publish
+  <<: *setup_env
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  script:
+    - poetry build
+    - poetry publish -u "__token__" -p "$PYPI_TOKEN"
