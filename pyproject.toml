@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jsonrpc2-objects"
-version = "2.0.9"
+version = "2.0.10"
 description = "A collection of objects for use in JSON-RPC 2.0 implementations."
 readme = "README.md"
 repository = "https://gitlab.com/mburkard/jsonrpc2-objects"
