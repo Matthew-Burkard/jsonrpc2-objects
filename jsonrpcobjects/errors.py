@@ -40,7 +40,7 @@ class JSONRPCError(Exception):
         self.rpc_error = error
         if isinstance(error, ErrorObjectData):
             msg += f"\nError Data: {error.data}"
-        super(JSONRPCError, self).__init__(error)
+        super(JSONRPCError, self).__init__(msg)
 
 
 class ParseError(JSONRPCError):
