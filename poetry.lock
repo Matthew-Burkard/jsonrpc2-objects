@@ -1,6 +1,6 @@
 [[package]]
 name = "mypy"
-version = "0.990"
+version = "0.991"
 description = "Optional static typing for Python"
 category = "dev"
 optional = false
@@ -59,7 +59,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "268d9c45d231bf7558f0829680a1fb75225b564de02f62704428154838a7bd4b"
+content-hash = "b0bf57c995d5d6ddc2c93ba4049d8873843954aba75e365df91a48fb4c8e92aa"
 
 [metadata.files]
 mypy = []
