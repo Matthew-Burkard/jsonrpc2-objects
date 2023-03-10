@@ -18,9 +18,9 @@ __all__ = (
     "ResultResponseObject",
 )
 
-ErrorType = Union["ErrorObjectData", "ErrorObject"]
+ErrorType = Union["ErrorObject", "ErrorObjectData"]
 NotificationType = Union["NotificationObject", "NotificationObjectParams"]
-RequestType = Union["RequestObjectParams", "RequestObject"]
+RequestType = Union["RequestObject", "RequestObjectParams"]
 ResponseType = Union["ErrorResponseObject", "ResultResponseObject"]
 
 
