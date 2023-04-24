@@ -8,23 +8,23 @@ __all__ = (
     "NotificationType",
     "RequestType",
     "ResponseType",
-    "ErrorObject",
-    "ErrorObjectData",
-    "ErrorResponseObject",
-    "NotificationObject",
-    "NotificationObjectParams",
-    "RequestObject",
-    "RequestObjectParams",
-    "ResultResponseObject",
+    "Error",
+    "ErrorData",
+    "ErrorResponse",
+    "Notification",
+    "NotificationParams",
+    "Request",
+    "RequestParams",
+    "ResultResponse",
 )
 
-ErrorType = Union["ErrorObjectData", "ErrorObject"]
-NotificationType = Union["NotificationObject", "NotificationObjectParams"]
-RequestType = Union["RequestObjectParams", "RequestObject"]
-ResponseType = Union["ErrorResponseObject", "ResultResponseObject"]
+ErrorType = Union["ErrorData", "Error"]
+NotificationType = Union["Notification", "NotificationParams"]
+RequestType = Union["RequestParams", "Request"]
+ResponseType = Union["ErrorResponse", "ResultResponse"]
 
 
-class RequestObjectParams(BaseModel):
+class RequestParams(BaseModel):
     """JSON-RPC 2.0 request object with parameters."""
 
     id: Union[StrictInt, StrictStr]
@@ -33,7 +33,7 @@ class RequestObjectParams(BaseModel):
     jsonrpc: str = "2.0"
 
 
-class RequestObject(BaseModel):
+class Request(BaseModel):
     """JSON-RPC 2.0 request object."""
 
     id: Union[StrictInt, StrictStr]
@@ -41,7 +41,7 @@ class RequestObject(BaseModel):
     jsonrpc: str = "2.0"
 
 
-class NotificationObjectParams(BaseModel):
+class NotificationParams(BaseModel):
     """JSON-RPC 2.0 notification object with parameters."""
 
     method: str
@@ -49,14 +49,14 @@ class NotificationObjectParams(BaseModel):
     jsonrpc: str = "2.0"
 
 
-class NotificationObject(BaseModel):
+class Notification(BaseModel):
     """JSON-RPC 2.0 notification object."""
 
     method: str
     jsonrpc: str = "2.0"
 
 
-class ErrorObjectData(BaseModel):
+class ErrorData(BaseModel):
     """JSON-RPC 2.0 error object with data."""
 
     code: int
@@ -64,14 +64,14 @@ class ErrorObjectData(BaseModel):
     data: Any
 
 
-class ErrorObject(BaseModel):
+class Error(BaseModel):
     """JSON-RPC 2.0 error object."""
 
     code: int
     message: str
 
 
-class ErrorResponseObject(BaseModel):
+class ErrorResponse(BaseModel):
     """JSON-RPC 2.0 error response object."""
 
     id: Optional[Union[StrictInt, StrictStr]]
@@ -79,7 +79,7 @@ class ErrorResponseObject(BaseModel):
     jsonrpc: str = "2.0"
 
 
-class ResultResponseObject(BaseModel):
+class ResultResponse(BaseModel):
     """JSON-RPC 2.0 result response object."""
 
     id: Union[StrictInt, StrictStr]

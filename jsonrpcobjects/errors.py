@@ -7,7 +7,7 @@ Each exception extends a base exception JSONRPCError.
 """
 from typing import Optional, Type
 
-from jsonrpcobjects.objects import ErrorObject, ErrorObjectData, ErrorType
+from jsonrpcobjects.objects import Error, ErrorData, ErrorType
 
 __all__ = (
     "INTERNAL_ERROR",
@@ -25,11 +25,11 @@ __all__ = (
     "get_exception_by_code",
 )
 
-INVALID_REQUEST = ErrorObject(code=-32600, message="Invalid Request")
-METHOD_NOT_FOUND = ErrorObject(code=-32601, message="Method not found")
-INVALID_PARAMS = ErrorObject(code=-32602, message="Invalid params")
-INTERNAL_ERROR = ErrorObject(code=-32603, message="Internal error")
-PARSE_ERROR = ErrorObject(code=-32700, message="Parse error")
+INVALID_REQUEST = Error(code=-32600, message="Invalid Request")
+METHOD_NOT_FOUND = Error(code=-32601, message="Method not found")
+INVALID_PARAMS = Error(code=-32602, message="Invalid params")
+INTERNAL_ERROR = Error(code=-32603, message="Internal error")
+PARSE_ERROR = Error(code=-32700, message="Parse error")
 
 
 class JSONRPCError(Exception):
@@ -38,7 +38,7 @@ class JSONRPCError(Exception):
     def __init__(self, error: ErrorType) -> None:
         msg = f"{error.code}: {error.message}"
         self.rpc_error = error
-        if isinstance(error, ErrorObjectData):
+        if isinstance(error, ErrorData):
             msg += f"\nError Data: {error.data}"
         super(JSONRPCError, self).__init__(msg)
 
