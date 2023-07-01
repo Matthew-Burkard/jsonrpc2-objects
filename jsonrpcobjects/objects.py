@@ -1,62 +1,65 @@
 """JSON-RPC 2.0 spec objects."""
-from typing import Any, Optional, Union
 
-from pydantic import BaseModel, StrictInt, StrictStr
+from __future__ import annotations
 
 __all__ = (
+    "DataError",
+    "Error",
+    "ErrorResponse",
     "ErrorType",
+    "Notification",
     "NotificationType",
+    "ParamsNotification",
+    "ParamsRequest",
+    "Request",
     "RequestType",
     "ResponseType",
-    "ErrorObject",
-    "ErrorObjectData",
-    "ErrorResponseObject",
-    "NotificationObject",
-    "NotificationObjectParams",
-    "RequestObject",
-    "RequestObjectParams",
-    "ResultResponseObject",
+    "ResultResponse",
 )
 
-ErrorType = Union["ErrorObjectData", "ErrorObject"]
-NotificationType = Union["NotificationObject", "NotificationObjectParams"]
-RequestType = Union["RequestObjectParams", "RequestObject"]
-ResponseType = Union["ErrorResponseObject", "ResultResponseObject"]
+from typing import Any, Union
+
+from pydantic import BaseModel
+
+ErrorType = Union["DataError", "Error"]
+NotificationType = Union["Notification", "ParamsNotification"]
+RequestType = Union["ParamsRequest", "Request"]
+ResponseType = Union["ErrorResponse", "ResultResponse"]
 
 
-class RequestObjectParams(BaseModel):
+class ParamsRequest(BaseModel):
     """JSON-RPC 2.0 request object with parameters."""
 
-    id: Union[StrictInt, StrictStr]
+    id: int | str
     method: str
-    params: Union[list, dict]
+    params: list | dict
     jsonrpc: str = "2.0"
 
 
-class RequestObject(BaseModel):
+class Request(BaseModel):
     """JSON-RPC 2.0 request object."""
 
-    id: Union[StrictInt, StrictStr]
+    id: int | str
     method: str
     jsonrpc: str = "2.0"
 
 
-class NotificationObjectParams(BaseModel):
+class ParamsNotification(BaseModel):
     """JSON-RPC 2.0 notification object with parameters."""
 
     method: str
-    params: Union[list, dict]
+    params: list | dict
     jsonrpc: str = "2.0"
 
 
-class NotificationObject(BaseModel):
+class Notification(BaseModel):
     """JSON-RPC 2.0 notification object."""
 
     method: str
     jsonrpc: str = "2.0"
 
 
-class ErrorObjectData(BaseModel):
+class DataError(BaseModel):
     """JSON-RPC 2.0 error object with data."""
 
     code: int
@@ -64,24 +67,24 @@ class ErrorObjectData(BaseModel):
     data: Any
 
 
-class ErrorObject(BaseModel):
+class Error(BaseModel):
     """JSON-RPC 2.0 error object."""
 
     code: int
     message: str
 
 
-class ErrorResponseObject(BaseModel):
+class ErrorResponse(BaseModel):
     """JSON-RPC 2.0 error response object."""
 
-    id: Optional[Union[StrictInt, StrictStr]]
+    id: int | str | None
     error: ErrorType
     jsonrpc: str = "2.0"
 
 
-class ResultResponseObject(BaseModel):
+class ResultResponse(BaseModel):
     """JSON-RPC 2.0 result response object."""
 
-    id: Union[StrictInt, StrictStr]
+    id: int | str
     result: Any
     jsonrpc: str = "2.0"

@@ -1,6 +1,14 @@
 [[package]]
+name = "annotated-types"
+version = "0.5.0"
+description = "Reusable constraint types to use with typing.Annotated"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "mypy"
-version = "1.1.1"
+version = "1.4.1"
 description = "Optional static typing for Python"
 category = "dev"
 optional = false
@@ -9,7 +17,7 @@ python-versions = ">=3.7"
 [package.dependencies]
 mypy-extensions = ">=1.0.0"
 tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
-typing-extensions = ">=3.10"
+typing-extensions = ">=4.1.0"
 
 [package.extras]
 dmypy = ["psutil (>=4.0)"]
@@ -27,18 +35,33 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "pydantic"
-version = "1.10.6"
-description = "Data validation and settings management using python type hints"
+version = "2.0"
+description = "Data validation using Python type hints"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 
 [package.dependencies]
-typing-extensions = ">=4.2.0"
+annotated-types = ">=0.4.0"
+pydantic-core = "2.0.1"
+typing-extensions = ">=4.6.1"
 
 [package.extras]
-dotenv = ["python-dotenv (>=0.10.4)"]
-email = ["email-validator (>=1.0.3)"]
+email = ["email-validator (>=2.0.0)"]
+
+[[package]]
+name = "pydantic-core"
+version = "2.0.1"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+typing-extensions = [
+    {version = ">=4.6.0", markers = "platform_python_implementation != \"PyPy\""},
+    {version = ">=4.6.0,<4.7.0", markers = "platform_python_implementation == \"PyPy\""},
+]
 
 [[package]]
 name = "tomli"
@@ -50,7 +73,15 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "typing-extensions"
-version = "4.5.0"
+version = "4.6.3"
+description = "Backported and Experimental Type Hints for Python 3.7+"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
+name = "typing-extensions"
+version = "4.7.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
 category = "main"
 optional = false
@@ -59,12 +90,14 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "957606d4b20699cb5db5d18c90335d2d73d6e8ad273a418e9d05a29b2b0ccdc3"
+content-hash = "a268f8620b12ac0cf4d1ef78d9f438abaf915084be756cb6dd62fb4afde2b6dc"
 
 [metadata.files]
+annotated-types = []
 mypy = []
 mypy-extensions = []
 pydantic = []
+pydantic-core = []
 tomli = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
     {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
