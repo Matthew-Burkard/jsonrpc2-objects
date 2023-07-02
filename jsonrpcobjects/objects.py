@@ -1,7 +1,5 @@
 """JSON-RPC 2.0 spec objects."""
 
-from __future__ import annotations
-
 __all__ = (
     "DataError",
     "Error",
@@ -17,7 +15,7 @@ __all__ = (
     "ResultResponse",
 )
 
-from typing import Any, Union
+from typing import Any, Optional, Union
 
 from pydantic import BaseModel
 
@@ -30,16 +28,16 @@ ResponseType = Union["ErrorResponse", "ResultResponse"]
 class ParamsRequest(BaseModel):
     """JSON-RPC 2.0 request object with parameters."""
 
-    id: int | str
+    id: Union[int, str]
     method: str
-    params: list | dict
+    params: Union[list, dict]
     jsonrpc: str = "2.0"
 
 
 class Request(BaseModel):
     """JSON-RPC 2.0 request object."""
 
-    id: int | str
+    id: Union[int, str]
     method: str
     jsonrpc: str = "2.0"
 
@@ -48,7 +46,7 @@ class ParamsNotification(BaseModel):
     """JSON-RPC 2.0 notification object with parameters."""
 
     method: str
-    params: list | dict
+    params: Union[list, dict]
     jsonrpc: str = "2.0"
 
 
@@ -77,7 +75,7 @@ class Error(BaseModel):
 class ErrorResponse(BaseModel):
     """JSON-RPC 2.0 error response object."""
 
-    id: int | str | None
+    id: Optional[Union[int, str]]
     error: ErrorType
     jsonrpc: str = "2.0"
 
@@ -85,6 +83,6 @@ class ErrorResponse(BaseModel):
 class ResultResponse(BaseModel):
     """JSON-RPC 2.0 result response object."""
 
-    id: int | str
+    id: Union[int, str]
     result: Any
     jsonrpc: str = "2.0"
