@@ -19,29 +19,24 @@ poetry add jsonrpc2-objects
 
 Available in `objects` are the following:
 
-| Object                   | Description                 |
-|--------------------------|-----------------------------|
-| RequestObjectParams      | Request with params         |
-| RequestObject            | Request without params      |
-| NotificationObjectParams | Notification with params    |
-| NotificationObject       | Notification without params |
-| ErrorResponseObject      | Response with result        |
-| ResultResponseObject     | Response with error         |
+| Object             | Description                 |
+|--------------------|-----------------------------|
+| ParamsRequest      | Request with params         |
+| Request            | Request without params      |
+| ParamsNotification | Notification with params    |
+| Notification       | Notification without params |
+| ErrorResponse      | Response with result        |
+| ResultResponse     | Response with error         |
 
 ## Errors
 
 Python exceptions are available for each JSON-RPC 2.0 error. Each error
 extends `JSONRPCError`.
 
-Example use with a client implementing these errors:
-
-```python
-from jsonrpcobjects.errors import JSONRPCError, MethodNotFound
-
-try:
-    client.example_method(params)
-except MethodNotFound:
-    print("Handle method not found")
-except JSONRPCError:
-    print("Handle any JSON RPC error.")
-```
+- JSONRPCError
+- ParseError
+- InvalidRequest
+- MethodNotFound
+- InvalidParams
+- InternalError
+- ServerError
