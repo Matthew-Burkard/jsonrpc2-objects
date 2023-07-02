@@ -22,7 +22,7 @@ __all__ = (
     "get_exception_by_code",
 )
 
-from typing import Optional
+from typing import Optional, Type
 
 from jsonrpcobjects.objects import DataError, Error, ErrorType
 
@@ -86,7 +86,7 @@ class ServerError(JSONRPCError):
         super(ServerError, self).__init__(error)
 
 
-def get_exception_by_code(code: int) -> Optional[JSONRPCError]:
+def get_exception_by_code(code: int) -> Optional[Type[JSONRPCError]]:
     """Get the JSON-RPC error corresponding to an error code.
 
     :param code: The JSON-RPC error code.
