@@ -64,6 +64,14 @@ typing-extensions = [
 ]
 
 [[package]]
+name = "ruff"
+version = "0.0.275"
+description = "An extremely fast Python linter, written in Rust."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -90,7 +98,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "a268f8620b12ac0cf4d1ef78d9f438abaf915084be756cb6dd62fb4afde2b6dc"
+content-hash = "684d660917a0542a4b6cc9c9e83de60295f9eae3970283dbd5a7ecfcf5283267"
 
 [metadata.files]
 annotated-types = []
@@ -98,6 +106,7 @@ mypy = []
 mypy-extensions = []
 pydantic = []
 pydantic-core = []
+ruff = []
 tomli = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
     {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},

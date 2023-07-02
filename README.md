@@ -8,11 +8,11 @@ A collection of objects for use in JSON-RPC 2.0 implementations.
 ## Installation
 
 ```shell
-pip install jsonrpc2-objects
+poetry add jsonrpc2-objects
 ```
 
 ```shell
-poetry add jsonrpc2-objects
+pip install jsonrpc2-objects
 ```
 
 ## Objects
@@ -34,9 +34,9 @@ Python exceptions are available for each JSON-RPC 2.0 error. Each error
 extends `JSONRPCError`.
 
 - JSONRPCError
-- ParseError
+- InternalError
+- InvalidParams
 - InvalidRequest
 - MethodNotFound
-- InvalidParams
-- InternalError
+- ParseError
 - ServerError
